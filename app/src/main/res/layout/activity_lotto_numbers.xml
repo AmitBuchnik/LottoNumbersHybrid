@@ -8,10 +8,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:hardwareAccelerated="false"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.android.amitbuchnik.lottonumbers.LottoNumbers">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme"
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/webView"/>
+        android:id="@+id/webView"
+        android:layout_below="@+id/my_toolbar"/>
 </RelativeLayout>

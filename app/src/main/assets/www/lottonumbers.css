@@ -3,6 +3,10 @@ body {
     //font-family: 'Roboto Condensed', sans-serif;
 }
 
+.ui-header .ui-btn-icon-notext {
+    top: 0.6em; !important;
+}
+
 .center {
     text-align: center;
 }
