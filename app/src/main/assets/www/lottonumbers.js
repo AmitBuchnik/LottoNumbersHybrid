@@ -6,6 +6,26 @@ lotto.sliderRangeMax = 49;
 $(document).ready(function () {
     //localStorage.clear();
     $('#randomCard').hide();
+
+    let amount = lotto.getAmountFromLocalStorage();
+    if (amount != null || amount != "") {
+        $('#' + amount).attr('checked', 'checked');
+        //$("input[type='radio']").checkboxradio("refresh");
+    }
+    else {
+        $('#6').attr('checked', 'checked');
+        //$("input[type='radio']").checkboxradio("refresh");
+    }
+});
+
+
+$(document).on("pagecreate", function (event) {
+
+});
+
+$(document).on( "pagecontainerchange", function( event, ui ) {
+    if (ui.toPage[0].id == 'settings') {
+    }
 });
 
 lotto.generateNumbers = function () {
@@ -16,7 +36,7 @@ lotto.generateNumbers = function () {
     lotto.numbersSet.clear();
 
     while (lotto.numbersSet.size < amount) {
-        let num = math.randomInt(min, max);
+        let num = math.randomInt(min - 1, max + 1);
         lotto.numbersSet.add(num);
     }
 
@@ -55,7 +75,7 @@ lotto.getIntFromLocalStorage = function (item) {
 lotto.getMinFromLocalStorage = function () {
     let min = lotto.getIntFromLocalStorage('min');
     if(min == -1) {
-        min = 0;
+        min = lotto.sliderRangeMin;
     }
     return min;
 };
@@ -63,7 +83,7 @@ lotto.getMinFromLocalStorage = function () {
 lotto.getMaxFromLocalStorage = function () {
     let max = lotto.getIntFromLocalStorage('max');
     if(max == -1) {
-        max = 50;
+        max = lotto.sliderRangeMax;
     }
     return max;
 };
@@ -76,23 +96,5 @@ lotto.getAmountFromLocalStorage = function () {
     return amount;
 };
 
-$(document).on( "pagecontainerchange", function( event, ui ) {
-    if(ui.toPage[0].id == 'settings') {
-        let amount = lotto.getAmountFromLocalStorage();
-        if (amount != null || amount != "") {
-            $('#' + amount).attr('checked', 'checked');
-            $("input[type='radio']").checkboxradio("refresh");
-        }
-        else {
-            $('#6').attr('checked', 'checked');
-            $("input[type='radio']").checkboxradio("refresh");
-        }
-    }
-});
 
-/*$(document).on("pagechange", function (event) {
-    let amount = lotto.getAmountFromLocalStorage();
-    if (amount != null || amount != "") {
-        $('#' + amount).attr('checked', 'checked'); //.button('refresh');
-    }
-});*/
+
